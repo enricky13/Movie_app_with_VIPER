@@ -21,24 +21,24 @@ class MainPresenter(private var view: MainContract.View?) : MainContract.Present
     }
 
     override fun onSuccess(result : List<Results>, selector: CallSelector) {
-        adapter = MovieAdapter(result, selector)
-        view?.setupRecyclerView(selector, adapter)
+//        adapter = MovieAdapter(result, selector)
+        view?.setupRecyclerView(selector, MovieAdapter(result, selector))
         when (selector){
             CallSelector.NOW_PLAYING -> {
                 result.forEach {
-                    Log.d("FINDME", "Now Playing: ${it.image}")
+                    Log.d("FINDME", "Now Playing: ${it.title}")
                 }
             }
 
             CallSelector.TOP_RATED -> {
                 result.forEach {
-                    Log.d("FINDME", "Top Rated: ${it.image}")
+                    Log.d("FINDME", "Top Rated: ${it.title}")
                 }
             }
 
             CallSelector.MOST_POPULAR -> {
                 result.forEach {
-                    Log.d("FINDME", "Most Popular: ${it.image}")
+                    Log.d("FINDME", "Most Popular: ${it.title}")
                 }
             }
         }

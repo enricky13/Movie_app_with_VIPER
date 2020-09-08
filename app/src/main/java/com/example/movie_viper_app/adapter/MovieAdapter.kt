@@ -50,9 +50,13 @@ class MovieAdapter(
             movieName?.text = result.title
             movieRating?.rating = result.popularity.toFloat()
             moviePoster?.let {
-                glide?.load(result.image ?: "")
+                glide?.load(BASE_URL + result.image )
                     ?.into(it)
             }
+        }
+
+        companion object {
+            val BASE_URL = "https://image.tmdb.org/t/p/w500"
         }
     }
 }

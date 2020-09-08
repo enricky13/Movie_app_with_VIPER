@@ -22,7 +22,12 @@ class MainActivity : AppCompatActivity(), MainContract.View{
         topMovieRv = findViewById(R.id.recyclerview_top_movies)
         nowPlayingRv = findViewById(R.id.recyclerview_now_playing_movies)
         mostPopularRv = findViewById(R.id.recyclerview_popular_movies)
+
         linearLayoutManager = LinearLayoutManager(this)
+        mostPopularRv?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        topMovieRv?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        nowPlayingRv?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         presenter = MainPresenter(this)
         presenter?.onActivityCreated()
     }
@@ -30,17 +35,14 @@ class MainActivity : AppCompatActivity(), MainContract.View{
     override fun setupRecyclerView(selector: CallSelector, adapter: MovieAdapter) {
         when (selector){
             CallSelector.MOST_POPULAR -> {
-                mostPopularRv?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
                 mostPopularRv?.adapter = adapter
             }
 
             CallSelector.TOP_RATED -> {
-                topMovieRv?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-                mostPopularRv?.adapter = adapter
+                topMovieRv?.adapter = adapter
             }
 
             CallSelector.NOW_PLAYING -> {
-                nowPlayingRv?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
                 nowPlayingRv?.adapter = adapter
             }
         }
