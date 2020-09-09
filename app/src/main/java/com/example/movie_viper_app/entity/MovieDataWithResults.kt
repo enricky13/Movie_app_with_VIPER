@@ -14,5 +14,7 @@ data class Results (
     @SerializedName("release_date")
     val releaseDate : String,
     val title : String,
-    val popularity : Number
+    val popularity : Number,
+    @SerializedName("vote_average")
+    val voteAverage : Number
 )

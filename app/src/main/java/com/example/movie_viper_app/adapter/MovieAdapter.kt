@@ -13,8 +13,7 @@ import com.example.movie_viper_app.entity.CallSelector
 import com.example.movie_viper_app.entity.Results
 
 class MovieAdapter(
-    private val result: List<Results>,
-    private val selector: CallSelector
+    private val result: List<Results>
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -37,7 +36,7 @@ class MovieAdapter(
         private var moviePoster: ImageView? = null
         private var movieName: TextView? = null
         private var movieRating: RatingBar? = null
-        private var glide : RequestManager? = null
+        private var glide: RequestManager? = null
 
         init {
             moviePoster = itemView.findViewById(R.id.iv_movie_image_itemview)
@@ -48,15 +47,15 @@ class MovieAdapter(
 
         fun onBind(result: Results) {
             movieName?.text = result.title
-            movieRating?.rating = result.popularity.toFloat()
+            movieRating?.rating = result.voteAverage.toFloat() / 2
             moviePoster?.let {
-                glide?.load(BASE_URL + result.image )
+                glide?.load(BASE_URL + result.image)
                     ?.into(it)
             }
         }
 
         companion object {
-            val BASE_URL = "https://image.tmdb.org/t/p/w500"
+            const val BASE_URL = "https://image.tmdb.org/t/p/w500"
         }
     }
 }

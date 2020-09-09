@@ -7,10 +7,10 @@ import com.example.movie_viper_app.adapter.MovieAdapter
 import com.example.movie_viper_app.entity.CallSelector
 import com.example.movie_viper_app.entity.Results
 
-class MainPresenter(private var view: MainContract.View?) : MainContract.Presenter, MainContract.InteractorOutPut{
-    private var interactor : MainContract.Interactor = MainInteractor()
-    private var router : MainContract.Router = MainRouter()
-    private lateinit var adapter : MovieAdapter
+class MainPresenter(private var view: MainContract.View?) : MainContract.Presenter,
+    MainContract.InteractorOutPut {
+    private var interactor: MainContract.Interactor = MainInteractor()
+    private var router: MainContract.Router = MainRouter()
 
     override fun onActivityCreated() {
         interactor.fetchData(this)
@@ -20,10 +20,9 @@ class MainPresenter(private var view: MainContract.View?) : MainContract.Present
         view = null
     }
 
-    override fun onSuccess(result : List<Results>, selector: CallSelector) {
-//        adapter = MovieAdapter(result, selector)
-        view?.setupRecyclerView(selector, MovieAdapter(result, selector))
-        when (selector){
+    override fun onSuccess(result: List<Results>, selector: CallSelector) {
+        view?.setupRecyclerView(selector, MovieAdapter(result))
+        when (selector) {
             CallSelector.NOW_PLAYING -> {
                 result.forEach {
                     Log.d("FINDME", "Now Playing: ${it.title}")
