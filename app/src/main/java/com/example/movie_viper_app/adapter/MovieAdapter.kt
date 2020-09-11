@@ -9,16 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.movie_viper_app.R
-import com.example.movie_viper_app.entity.CallSelector
 import com.example.movie_viper_app.entity.Results
+import com.example.movie_viper_app.mainModule.MainContract
 
 class MovieAdapter(
-    private val result: List<Results>
+    private val result: List<Results>,
+    private var movieClickListener : MainContract.Presenter.MovieClickListener?
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return MovieViewHolder(inflater, parent)
+        return MovieViewHolder(inflater, parent, movieClickListener)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -31,7 +32,8 @@ class MovieAdapter(
 
     class MovieViewHolder(
         inflater: LayoutInflater,
-        parent: ViewGroup
+        parent: ViewGroup,
+        private val listener: MainContract.Presenter.MovieClickListener?
     ) : RecyclerView.ViewHolder(inflater.inflate(R.layout.movie_list_itemview, parent, false)) {
         private var moviePoster: ImageView? = null
         private var movieName: TextView? = null
@@ -52,6 +54,8 @@ class MovieAdapter(
                 glide?.load(BASE_URL + result.image)
                     ?.into(it)
             }
+
+            itemView.setOnClickListener { listener?.onMovieClick(result) }
         }
 
         companion object {

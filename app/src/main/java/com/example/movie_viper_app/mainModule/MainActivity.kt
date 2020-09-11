@@ -8,27 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_viper_app.R
 import com.example.movie_viper_app.adapter.MovieAdapter
 import com.example.movie_viper_app.entity.CallSelector
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), MainContract.View{
     private var presenter : MainPresenter? = null
     private var linearLayoutManager : LinearLayoutManager? = null
-    private var topMovieRv : RecyclerView? = null
-    private var nowPlayingRv : RecyclerView? = null
-    private var mostPopularRv : RecyclerView? = null
-    private var topMoviePb : ProgressBar? = null
-    private var nowPlayingPb : ProgressBar? = null
-    private var mostPopularPb : ProgressBar? = null
+    private val topMovieRv : RecyclerView? by lazy { recyclerview_top_movies }
+    private val nowPlayingRv : RecyclerView? by lazy { recyclerview_now_playing_movies }
+    private val mostPopularRv : RecyclerView? by lazy { recyclerview_popular_movies }
+    private val topMoviePb : ProgressBar? by lazy { top_movie_pb }
+    private val nowPlayingPb : ProgressBar? by lazy { now_playing_pb }
+    private val mostPopularPb : ProgressBar? by lazy { popular_movies_pb }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        topMovieRv = findViewById(R.id.recyclerview_top_movies)
-        nowPlayingRv = findViewById(R.id.recyclerview_now_playing_movies)
-        mostPopularRv = findViewById(R.id.recyclerview_popular_movies)
-        topMoviePb = findViewById(R.id.top_movie_pb)
-        nowPlayingPb = findViewById(R.id.now_playing_pb)
-        mostPopularPb = findViewById(R.id.popular_movies_rb)
 
         linearLayoutManager = LinearLayoutManager(this)
         mostPopularRv?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

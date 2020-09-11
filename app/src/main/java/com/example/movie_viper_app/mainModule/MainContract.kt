@@ -18,8 +18,11 @@ interface MainContract {
     interface Presenter{
         fun onActivityCreated()
         fun onDestroy()
+        interface MovieClickListener {
+            fun onMovieClick(result: Results)
+        }
     }
     interface Router{
-
+        fun goToDetailActivity(results: Results)
     }
 }

@@ -1,10 +1,11 @@
 package com.example.movie_viper_app.entity
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class MovieDataWithResults (
     val results : List<Results>
-)
+) : Serializable
 
 data class Results (
     @SerializedName("poster_path")
@@ -17,4 +18,4 @@ data class Results (
     val popularity : Number,
     @SerializedName("vote_average")
     val voteAverage : Number
-)
+) : Serializable

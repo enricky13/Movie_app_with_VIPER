@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@id/recyclerview_now_playing_movies"/>
 
     <ProgressBar
-        android:id="@+id/popular_movies_rb"
+        android:id="@+id/popular_movies_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"

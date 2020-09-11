@@ -1,42 +1,44 @@
 package com.example.movie_viper_app.mainModule
 
+import android.app.Activity
 import android.util.Log
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_viper_app.adapter.MovieAdapter
 import com.example.movie_viper_app.entity.CallSelector
 import com.example.movie_viper_app.entity.Results
 
 class MainPresenter(private var view: MainContract.View?) : MainContract.Presenter,
     MainContract.InteractorOutPut {
-    private var interactor: MainContract.Interactor = MainInteractor()
-    private var router: MainContract.Router = MainRouter()
+    private var interactor: MainContract.Interactor? = MainInteractor()
+    private var router: MainContract.Router? = MainRouter(view as? Activity)
 
     override fun onActivityCreated() {
-        interactor.fetchData(this)
+        interactor?.fetchData(this)
     }
 
-    override fun onDestroy() {
-        view = null
-    }
-
-    override fun onSuccess(result: List<Results>, selector: CallSelector) {
-        view?.setupRecyclerView(selector, MovieAdapter(result))
+    override fun onSuccess(results: List<Results>, selector: CallSelector) {
+        view?.setupRecyclerView(
+            selector,
+            MovieAdapter(results, object : MainContract.Presenter.MovieClickListener {
+                override fun onMovieClick(result: Results) {
+                    router?.goToDetailActivity(result)
+                }
+            })
+        )
         when (selector) {
             CallSelector.NOW_PLAYING -> {
-                result.forEach {
+                results.forEach {
                     Log.d("FINDME", "Now Playing: ${it.title}")
                 }
             }
 
             CallSelector.TOP_RATED -> {
-                result.forEach {
+                results.forEach {
                     Log.d("FINDME", "Top Rated: ${it.title}")
                 }
             }
 
             CallSelector.MOST_POPULAR -> {
-                result.forEach {
+                results.forEach {
                     Log.d("FINDME", "Most Popular: ${it.title}")
                 }
             }
@@ -47,4 +49,9 @@ class MainPresenter(private var view: MainContract.View?) : MainContract.Present
         Log.d("FINDME", message)
     }
 
+    override fun onDestroy() {
+        view = null
+        interactor = null
+        router = null
+    }
 }
