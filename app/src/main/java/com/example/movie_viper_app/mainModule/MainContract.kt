@@ -1,7 +1,7 @@
 package com.example.movie_viper_app.mainModule
 
 import com.example.movie_viper_app.adapter.MovieAdapter
-import com.example.movie_viper_app.entity.CallSelector
+import com.example.movie_viper_app.enums.CallSelector
 import com.example.movie_viper_app.entity.Results
 
 interface MainContract {

@@ -1,6 +1,6 @@
 package com.example.movie_viper_app.mainModule
 
-import com.example.movie_viper_app.entity.CallSelector
+import com.example.movie_viper_app.enums.CallSelector
 import com.example.movie_viper_app.entity.MovieDataWithResults
 import com.example.movie_viper_app.entity.MovieNetworkSingleton
 import retrofit2.Call

@@ -3,7 +3,7 @@ package com.example.movie_viper_app.mainModule
 import android.app.Activity
 import android.util.Log
 import com.example.movie_viper_app.adapter.MovieAdapter
-import com.example.movie_viper_app.entity.CallSelector
+import com.example.movie_viper_app.enums.CallSelector
 import com.example.movie_viper_app.entity.Results
 
 class MainPresenter(private var view: MainContract.View?) : MainContract.Presenter,
@@ -27,7 +27,7 @@ class MainPresenter(private var view: MainContract.View?) : MainContract.Present
         when (selector) {
             CallSelector.NOW_PLAYING -> {
                 results.forEach {
-                    Log.d("FINDME", "Now Playing: ${it.title}")
+                    Log.d("FINDME", "Now Playing Movie ID: ${it.movieId}")
                 }
             }
 

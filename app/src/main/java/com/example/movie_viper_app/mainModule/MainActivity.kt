@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_viper_app.R
 import com.example.movie_viper_app.adapter.MovieAdapter
-import com.example.movie_viper_app.entity.CallSelector
+import com.example.movie_viper_app.enums.CallSelector
 import kotlinx.android.synthetic.main.activity_main.*
 
 

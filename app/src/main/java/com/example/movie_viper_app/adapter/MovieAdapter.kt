@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.movie_viper_app.R
 import com.example.movie_viper_app.entity.Results
+import com.example.movie_viper_app.enums.MovieBase
 import com.example.movie_viper_app.mainModule.MainContract
 
 class MovieAdapter(
@@ -51,15 +52,11 @@ class MovieAdapter(
             movieName?.text = result.title
             movieRating?.rating = result.voteAverage.toFloat() / 2
             moviePoster?.let {
-                glide?.load(BASE_URL + result.image)
+                glide?.load(MovieBase.MEDIUM_SIZE + result.image)
                     ?.into(it)
             }
 
             itemView.setOnClickListener { listener?.onMovieClick(result) }
-        }
-
-        companion object {
-            const val BASE_URL = "https://image.tmdb.org/t/p/w500"
         }
     }
 }

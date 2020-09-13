@@ -17,5 +17,7 @@ data class Results (
     val title : String,
     val popularity : Number,
     @SerializedName("vote_average")
-    val voteAverage : Number
+    val voteAverage : Number,
+    @SerializedName("id")
+    val movieId : Int
 ) : Serializable

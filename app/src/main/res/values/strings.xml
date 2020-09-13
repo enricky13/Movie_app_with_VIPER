@@ -3,4 +3,5 @@
     <string name="top_movies_header_string">Top Movies</string>
     <string name="now_playing_header_string">Now Playing</string>
     <string name="popular_movies_header_string">Popular Movies</string>
+    <string name="trailer_button_text">Trailer</string>
 </resources>
