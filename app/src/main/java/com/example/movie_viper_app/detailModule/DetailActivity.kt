@@ -1,10 +1,10 @@
 package com.example.movie_viper_app.detailModule
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.movie_viper_app.R
@@ -18,6 +18,8 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
     private val movieNameTv: TextView? by lazy { tv_movie_name_detailActivity }
     private val movieRatingRb: RatingBar? by lazy { rb_movie_rating_detailActivity }
     private val movieDescriptionTv: TextView? by lazy { tv_movie_description_detailActivity }
+    private val trailerButton: Button? by lazy { bn_trailer_detailActivity }
+    private val movieTrailerFrame: VideoView? by lazy { trailer_layout }
     private var glide: RequestManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,8 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         presenter = DetailPresenter(this)
         presenter?.onActivityCreated()
         presenter?.getIntentData(intent.getSerializableExtra(MovieBase.INTENT_HOLDER) as Results)
+
+        trailerButton?.setOnClickListener { presenter?.trailerButtonClicked() }
     }
 
     override fun displayMovieImage(image: String) {
@@ -46,5 +50,11 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
 
     override fun displayMovieDescription(description: String) {
         movieDescriptionTv?.text = description
+    }
+
+    override fun displayMovieTrailer(youtubeLink: String) {
+        movieTrailerFrame?.setMediaController( MediaController(this))
+        movieTrailerFrame?.setVideoURI(Uri.parse(MovieBase.YOUTUBE_BASE+youtubeLink))
+        movieTrailerFrame?.start()
     }
 }
