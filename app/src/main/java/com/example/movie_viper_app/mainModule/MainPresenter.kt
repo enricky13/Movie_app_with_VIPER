@@ -15,10 +15,10 @@ class MainPresenter(private var view: MainContract.View?) : MainContract.Present
         interactor?.fetchData(this)
     }
 
-    override fun onSuccess(results: List<Results>, selector: CallSelector) {
+    override fun onSuccess(result: List<Results>, selector: CallSelector) {
         view?.setupRecyclerView(
             selector,
-            MovieAdapter(results, object : MainContract.Presenter.MovieClickListener {
+            MovieAdapter(result, object : MainContract.Presenter.MovieClickListener {
                 override fun onMovieClick(result: Results) {
                     router?.goToDetailActivity(result)
                 }
@@ -26,19 +26,19 @@ class MainPresenter(private var view: MainContract.View?) : MainContract.Present
         )
         when (selector) {
             CallSelector.NOW_PLAYING -> {
-                results.forEach {
+                result.forEach {
                     Log.d("FINDME", "Now Playing Movie ID: ${it.movieId}")
                 }
             }
 
             CallSelector.TOP_RATED -> {
-                results.forEach {
+                result.forEach {
                     Log.d("FINDME", "Top Rated: ${it.title}")
                 }
             }
 
             CallSelector.MOST_POPULAR -> {
-                results.forEach {
+                result.forEach {
                     Log.d("FINDME", "Most Popular: ${it.title}")
                 }
             }
