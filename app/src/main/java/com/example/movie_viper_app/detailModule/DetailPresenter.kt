@@ -14,9 +14,9 @@ class DetailPresenter(private val view : DetailContract.View?) : DetailContract.
 
     override fun getIntentData(results: Results?) {
         this.results = results
-        view?.displayMovieName(results?.title ?: "No Title Found")
-        view?.displayMovieImage(results?.image ?: "No Image Found")
-        view?.displayMovieDescription(results?.overview ?: "No Description Found")
+        view?.displayMovieName(results?.title ?: NO_TITLE_FOUND)
+        view?.displayMovieImage(results?.image ?: NO_IMAGE_FOUND)
+        view?.displayMovieDescription(results?.overview ?: NO_DESCRIPTION_FOUND)
         view?.displayMovieRating(results?.voteAverage?.toFloat() ?: 0f)
     }
 
@@ -27,8 +27,13 @@ class DetailPresenter(private val view : DetailContract.View?) : DetailContract.
             }
 
             override fun onFailure(message: String) {
-                Log.d("FINDME", message)
             }
         })
+    }
+
+    companion object {
+        const val NO_TITLE_FOUND = "No Title Found"
+        const val NO_IMAGE_FOUND = "No Image Found"
+        const val NO_DESCRIPTION_FOUND = "No Description Found"
     }
 }
