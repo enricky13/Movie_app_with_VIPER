@@ -1,9 +1,9 @@
 package com.example.movie_viper_app.detailModule
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -19,7 +19,6 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
     private val movieRatingRb: RatingBar? by lazy { rb_movie_rating_detailActivity }
     private val movieDescriptionTv: TextView? by lazy { tv_movie_description_detailActivity }
     private val trailerButton: Button? by lazy { bn_trailer_detailActivity }
-    private val movieTrailerFrame: VideoView? by lazy { trailer_layout }
     private var glide: RequestManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +52,14 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
     }
 
     override fun displayMovieTrailer(youtubeLink: String) {
-        movieTrailerFrame?.setMediaController( MediaController(this))
-        movieTrailerFrame?.setVideoURI(Uri.parse(MovieBase.YOUTUBE_BASE+youtubeLink))
-        movieTrailerFrame?.start()
+        Intent(Intent.ACTION_VIEW, Uri.parse(MovieBase.YOUTUBE_BASE+youtubeLink)).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            setPackage(YOUTUBE_PACKAGE)
+            startActivity(this)
+        }
+    }
+
+    companion object {
+        const val YOUTUBE_PACKAGE = "com.google.android.youtube"
     }
 }
