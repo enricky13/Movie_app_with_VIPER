@@ -15,7 +15,7 @@
     <RatingBar
         android:id="@+id/rb_movie_rating_itemview"
         android:layout_marginTop="8dp"
-        android:clickable="false"
+        android:isIndicator="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

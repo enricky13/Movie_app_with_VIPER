@@ -63,7 +63,7 @@ class MainInteractor : MainContract.Interactor {
     }
 
     companion object {
-        val API_KEY = "07d84b920daba19e3cd63fda9637a04d"
+        const val API_KEY = "07d84b920daba19e3cd63fda9637a04d"
     }
 
 }

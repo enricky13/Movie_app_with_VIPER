@@ -28,6 +28,6 @@ interface DetailContract {
     }
 
     interface Router {
-
+        //NO-OP
     }
 }

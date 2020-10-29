@@ -26,7 +26,7 @@
         android:id="@+id/rb_movie_rating_detailActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="false"/>
+        android:isIndicator="true"/>
 
     <TextView
         android:id="@+id/tv_movie_description_detailActivity"

@@ -56,6 +56,8 @@ class MovieAdapter(
                     ?.into(it)
             }
 
+            movieRating?.isFocusable = false
+
             itemView.setOnClickListener { listener?.onMovieClick(result) }
         }
     }
