@@ -27,6 +27,7 @@ class DetailPresenter(private val view : DetailContract.View?) : DetailContract.
             }
 
             override fun onFailure(message: String) {
+                Log.d("FINDME", message)
             }
         })
     }

@@ -19,8 +19,8 @@ class DetailInteractor : DetailContract.Interactor {
                     response: Response<MovieTrailerWithResults>
                 ) {
                     interactorOutput.onSuccess(response.body()?.results?.find {
-                        it.type == "trailer"
-                        it.website == "YouTube"
+                        it.type == TRAILER
+                        it.website == YOUTUBE
                     })
                 }
 
@@ -30,4 +30,8 @@ class DetailInteractor : DetailContract.Interactor {
             })
     }
 
+    companion object {
+        const val TRAILER = "trailer"
+        const val YOUTUBE = "YouTube"
+    }
 }

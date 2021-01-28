@@ -11,6 +11,7 @@ import com.example.movie_viper_app.R
 import com.example.movie_viper_app.entity.Results
 import com.example.movie_viper_app.enums.MovieBase
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlin.math.absoluteValue
 
 class DetailActivity : AppCompatActivity(), DetailContract.View {
     private var presenter: DetailPresenter? = null
