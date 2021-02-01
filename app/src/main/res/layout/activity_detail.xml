@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:fillViewport="false">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical"
-    tools:context=".detailModule.DetailActivity">
-
-    <TextView
-        android:id="@+id/tv_movie_name_detailActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:id="@+id/iv_movie_image_detailActivity"
-        android:layout_width="300dp"
-        android:layout_height="400dp"/>
-
-    <RatingBar
-        android:id="@+id/rb_movie_rating_detailActivity"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:isIndicator="true"/>
+        android:fillViewport="false"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_movie_description_detailActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context=".detailModule.DetailActivity">
 
-    <Button
-        android:id="@+id/bn_trailer_detailActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/trailer_button_text"/>
+            <TextView
+                android:id="@+id/tv_movie_name_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-</LinearLayout>
-</ScrollView>
+            <ImageView
+                android:id="@+id/iv_movie_image_detailActivity"
+                android:layout_width="300dp"
+                android:layout_height="400dp" />
+
+            <RatingBar
+                android:id="@+id/rb_movie_rating_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true" />
+
+            <TextView
+                android:id="@+id/tv_movie_description_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/bn_trailer_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trailer_button_text" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>
